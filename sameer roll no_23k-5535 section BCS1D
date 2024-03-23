@@ -1,0 +1,141 @@
+#include <stdio.h>
+
+int checkTilesFit(int plot_width, int plot_length, int tile_width, int tile_length) {
+    
+if (plot_width <= 0) {
+printf("Invalid plot width. Please enter a positive value.\n");
+return -1;
+}
+
+if (plot_length <= 0) {
+    printf("Invalid plot length. Please enter a positive value.\n");
+    return -1;
+}
+
+if (tile_width <= 0) {
+    printf("Invalid tile width. Please enter a positive value.\n");
+    return -1;
+}
+
+if (tile_length <= 0) {
+    printf("Invalid tile length. Please enter a positive value.\n");
+    return -1;
+}
+
+   
+    int plot_area = plot_width * plot_length;
+    int tile_area = tile_width * tile_length;
+
+ 
+    if (tile_area <= plot_area) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int calculateTiles(int plot_width, int plot_length, int tile_width, int tile_length) {
+    // Check if the tile dimensions are positive
+    if (plot_width <= 0 || plot_length <= 0 || tile_width <= 0 || tile_length <= 0) {
+        return 0;
+    }
+
+    // Calculate the area of the plot and the area of a single tile
+    int plot_area = plot_width * plot_length;
+    int tile_area = tile_width * tile_length;
+
+    // Check if the tile can fit into the plot area
+    if (tile_area <= plot_area) {
+        // Calculate the number of tiles required to cover the plot
+        int num_tiles = plot_area / tile_area;
+        return num_tiles;
+    } else {
+        return 0;
+    }
+}
+
+void test1(int arr[][5], int size) {
+    printf("\n\nTask 1 Results\n\n");
+    int passed = 0;
+    int failed = 0;
+
+    for (int i = 0; i < size; i++) {
+        int val = checkTilesFit(arr[i][0], arr[i][1], arr[i][2], arr[i][3]);
+        if (val == arr[i][4]) {
+            passed++;
+        } else {
+            failed++;
+            printf("Test Failed\n");
+            printf("Tile Width = %d\tTile Length = %d\n", arr[i][2], arr[i][3]);
+            printf("Plot Width = %d\tPlot Length = %d\n", arr[i][0], arr[i][1]);
+            printf("Expected = %d\n", arr[i][4]);
+            printf("Result = %d\n", val);
+            printf("\n\n");
+        }
+    }
+
+    printf("\n\n");
+    printf("Total Passed: %d\n", passed);
+    printf("Total Failed: %d\n", failed);
+    printf("\n\n");
+    printf("-----------------------------------------------------------------------------------------------------------------\n");
+}
+
+void test2(int arr[][5], int size) {
+    printf("\n\nTask 2 Results\n\n");
+    int passed = 0;
+    int failed = 0;
+
+    for (int i = 0; i < size; i++) {
+        int val = calculateTiles(arr[i][0], arr[i][1], arr[i][2], arr[i][3]);
+        if (val == arr[i][4]) {
+            passed++;
+        } else {
+            failed++;
+            printf("Test Failed\n");
+            printf("Tile Width = %d\tTile Length = %d\n", arr[i][2], arr[i][3]);
+            printf("Plot Width = %d\tPlot Length = %d\n", arr[i][0], arr[i][1]);
+            printf("Expected = %d\n", arr[i][4]);
+            printf("Result = %d\n", val);
+            printf("\n\n");
+        }
+    }
+
+    printf("\n\n");
+    printf("Total Passed: %d\n", passed);
+    printf("Total Failed: %d\n", failed);
+    printf("\n\n");
+    printf("-----------------------------------------------------------------------------------------------------------------\n");
+}
+
+int main() {
+    int arr1[][5] = {{2, 3, 4, 0, 0},
+                     {2, 3, 0, 4, 0},
+                     {2, 0, 1, 2, 0},
+                     {0, 1, 2, 3, 0},
+                     {0, 0, 0, 0, 0},
+                     {4, 3, 2, 1, 1},
+                     {3, 3, 2, 1, 0},
+                     {4, 3, 2, 2, 0},
+                     {5, 3, 3, 1, 1},
+                     {4, 3, 1, 2, 1},
+                     {4, 3, 2, 1, 1},
+                     {4, 3, 12, 1, 0},
+                     {3, 3, 2, 1, 0},
+                     {4, -3, 2, -1, 0}};
+    int arr2[][5] = {{2, 3, 4, 0, 0},
+                     {2, 3, 0, 4, 0},
+                     {2, 0, 1, 2, 0},
+                     {4, 3, 1, 2, 6},
+                     {4, 3, 2, 1, 6},
+                     {4, 3, 12, 1, 0},
+                     {3, 3, 2, 1, 0},
+                     {5, 4, 2, 1, 10},
+                     {4, 4, 4, 4, 1},
+                     {8, 4, 2, 2, 8},
+                     {100, 100, 50, 50, 4}};
+    test1(arr1, 14);
+    test2(arr2, 11);
+    return 0;
+}
+
