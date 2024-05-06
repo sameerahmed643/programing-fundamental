@@ -1,0 +1,40 @@
+NAME=SAMEER
+ROLL NPO=23K-5535
+SECTION=BCS2D
+ASSIGNMENT =03
+COURSE = PROGRAMING FUNDAMENTAL(THEORY)
+DATE=29-04-2024
+
+
+#include <stdio.h>
+
+// Function declaration
+void my_cal(int a, int b, int *sum, int *difference, int *product);
+
+int main() {
+    int a, b;
+    int sum, difference, product;
+
+    // Input from user
+    printf("Enter the first integer: ");
+    scanf("%d", &a);
+    printf("Enter the second integer: ");
+    scanf("%d", &b);
+
+    // Call function to perform calculations
+    my_cal(a, b, &sum, &difference, &product);
+
+    // Output results
+    printf("Sum: %d\n", sum);
+    printf("Difference: %d\n", difference);
+    printf("Product: %d\n", product);
+
+    return 0;
+}
+
+// Function to perform calculations
+void my_cal(int a, int b, int *sum, int *difference, int *product) {
+    *sum = a + b;
+    *difference = a - b;
+    *product = a * b;
+}
